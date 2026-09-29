@@ -1,15 +1,54 @@
-*{
+@import "tailwindcss";
+
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-@import "tailwindcss";
 
-input{
-  border: 2px solid red;
-  margin: 30px;
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+  --card: #f3f4f6;
+  --primary: #4f46e5;
 }
 
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --text: #f1f5f9;
+  --card: #1e293b;
+  --primary: #818cf8;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input {
+  border: 2px solid red;
+  margin: 30px;
+  background-color: var(--card);
+  color: var(--text);
+}
+
+.home {
+  min-height: 100vh;
+  padding: 30px;
+  background-color: var(--bg);
+  color: var(--text);
+}
 button{
-  margin-left: 20px;
+  margin: 20px;
+
+}
+h1{
+  text-align: center;
+}
+input{
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Courier New', Courier, monospace;
 }
