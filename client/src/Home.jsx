@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import UserFrom from "./pages/UserFrom";
 import { Eye, EyeOff } from "lucide-react";
+import UseEffect from "./components/UseEffect";
 function Home() {
   const [showText, setShowText] = useState(false);
   const [user, setUser] = useState("");
@@ -101,6 +102,7 @@ console.log("home render")
 
         )}
       </ul>
+      <UseEffect/>
     </>
   );
 }
