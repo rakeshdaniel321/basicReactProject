@@ -57,7 +57,7 @@ function UserFrom() {
         onChange={handleChange}
       />
       <input
-        type="tell"
+        type="tel"
         name="phone"
         value={form.phone}
         placeholder="enter your phone"

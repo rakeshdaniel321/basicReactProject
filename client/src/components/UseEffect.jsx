@@ -8,26 +8,27 @@ function UseEffect() {
   console.log("useEffect components Render...");
 
   useEffect(() => {
+    const timmer = setInterval(() => {
+      setCount(count + 1);
+    }, 1000);
+
     console.log("effect");
-  },[]);
+  }, [count]);
+  
 
   useEffect(() => {
     setName("rakesh");
     console.log("components Mounted");
   }, []);
- 
 
   useEffect(() => {
     console.log(`name changed: ${name}`);
-    
   }, [name]);
-   
- 
-  useEffect(() => {
-      console.log(`Count2 dependency value change before effect run : ${count2}`);
-      console.log(`name dependency value change before effect run : ${name}`);
-  }, [count2,name]);
 
+  useEffect(() => {
+    console.log(`Count2 dependency value change before effect run : ${count2}`);
+    console.log(`name dependency value change before effect run : ${name}`);
+  }, [count2, name]);
 
   return (
     <>
@@ -45,8 +46,6 @@ function UseEffect() {
         +
       </button>
 
-      
-
       <p>count : {count2}</p>
       <button
         onClick={() => {
@@ -56,9 +55,6 @@ function UseEffect() {
       >
         +
       </button>
-
-      
-      
     </>
   );
 }
