@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTheme } from "../components/ToggleButton";
 
+
 function UserFrom() {
   const { theme, toggleTheme } = useTheme();
   const [form, setForm] = useState({
@@ -9,6 +10,27 @@ function UserFrom() {
     phone: "",
     city: "",
   });
+
+  const locationData = {
+    India: {
+      "Tamil Nadu": ["Chennai", "Madurai", "Coimbatore"],
+      Kerala: ["Kochi", "Trivandrum"],
+    },
+
+    USA: {
+      California: ["Los Angeles", "San Diego"],
+      Texas: ["Houston", "Dallas"],
+    },
+  };
+
+  // console.log(Object.keys(locationData));
+
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+
+  console.log(country);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -19,7 +41,6 @@ function UserFrom() {
   console.log("form render");
   return (
     <>
-    
       <h1 className="text-3xl font-bold underline">UserFrom</h1>
       <input
         type="text"
@@ -49,7 +70,7 @@ function UserFrom() {
         placeholder="enter your city"
         onChange={handleChange}
       />
-       <h1>input Data</h1>
+      <h1>input Data</h1>
       <div className="mt-5">
         {Object.entries(form).map(([key, value]) => (
           <p key={key}>
@@ -90,7 +111,43 @@ function UserFrom() {
     "
         ></div>
       </label>
-   
+      <h1 className="text-3xl font-bold underline ">State Drop down</h1>
+      <select onChange={(e) =>{ setCountry(e.target.value); setState(""); setCity("")}} style={{ margin: "40px" }}>
+        <option  value="">Select country</option>
+        {Object.keys(locationData).map((country) => {
+          return (
+            <option
+              
+              key={country}
+              value={country}
+            >
+              {country}
+            </option>
+          );
+        })}
+      </select>
+
+      {country && (
+        <select onChange={(e) => { setState(e.target.value); setCity(""); }} style={{ margin: "40px" }}>
+          <option value="">Select state</option>
+          {Object.keys(locationData[country]).map((state) => (
+            <option key={state} value={state}>
+              {state}
+            </option>
+          ))}
+        </select>
+      )}
+
+      {state && (
+        <select onChange={(e) =>{ setCity(e.target.value); }} style={{ margin: "40px" }}>
+          <option value="">Select city</option>
+          {locationData[country][state].map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
+      )}
     </>
   );
 }
